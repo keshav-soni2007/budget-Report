@@ -11,12 +11,12 @@ this is a program that solve many peoples problem to manage there monthly expens
 5. the remaining money.
 
 # Feature of this program:
--this is a easy to go program use on the command-line interface.
--this system is programed as so that the user can enter multipale enteris of there expensis.
--calculate total spending.
--calculate remaining money.
--this give a tabuler report for easy and clean  understanding.
--it can heandel the error made by user.
+1.this is a easy to go program use on the command-line interface.
+2.this system is programed as so that the user can enter multipale enteris of there expensis.
+3.calculate total spending.
+4.calculate remaining money.
+5.this give a tabuler report for easy and clean  understanding.
+6.it can heandel the error made by user.
 
 # how to run/install the program:
 1. copy the repository and paste it.
