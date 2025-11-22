@@ -1,48 +1,75 @@
 def __main__():
-    """this the program to solve day to day life problem of how to manage there finencial record and how to make 
-        a good use of there money , so this program will collect the data of the person expenses, there income and give a detail tabuler report on how
-        much the person spend and his/her remaning money as well."""
+    """
+    A simple budget helper tool.
+    This small program lets a person record where they spent money,
+    keeps track of their monthly income, and finally prints a neat
+    little report showing total expenses and remaining balance.
+    Nothing fancy—just something to make day-to-day money handling easier.
+    """
 
+    def get_spendings():
+        # This function asks the user about their different spendings
+        # and collects them one by one inside a list as tuples.
+        all_spendings = []
+        print("\nEnter each spending you made.")
+        print('When you are done, simply type: done')
 
-    def spending_money():  #this is a function that will get the user expenses and return the type of spending and amount in a list. 
-        spending=[]
-        print("enter the spending you made (type done to finish.)")
-        while True:       #loop to take multiple input for the user until he/she type done. 
-            type_of_spending=input("Enter where you spend your money:").lower()
-            if type_of_spending =="done":
+        while True:
+            item = input("\nWhere did you spend money?: ").strip().lower()
+
+            if item == "done":
+                # stop asking once the user is finished
                 break
-            else:
-                try:                             
-                    amount=float(input("Enter the amount of money spend on the services: "))
-                    spending.append((type_of_spending,amount))
-                except ValueError:
-                    print("the input is not valid(use numbers only!)")
-        return spending
 
-    def body():
-        #in this first the income is ask and then all the calculation is done then print the fomate as shown.
-        print("----------BUDGET TRACKING SYSTEM----------")
-        __income__=float(input("enter your monthly income: ₹"))
-        pays= spending_money()
-        total_spending=sum(amount for type_of_spending, amount in pays)
-        balance= (__income__-total_spending)
-            
-        print("***************BUDGET REPORT***************")
-        print(f"monthly income: ₹{__income__}")
-        print()
-        print("type of spending"," "*12,"amount")
-        print("-"*43)
+            # trying to get a valid amount from the user
+            try:
+                amt = int(input("How much did you spend there?: "))
+                all_spendings.append((item, amt))
+            except ValueError:
+                print("Please enter a valid number for amount!")
+        
+        return all_spendings
 
-        for spending , amount in pays: #this loop is use to get the values of amount and spending from the variable pays
-            print("{:<26}{:>10}".format(spending,amount))
 
-        #the formate functon is builtin function of pythom which can formate the print statement like it was used :< means that for the string set the width from the right,
-        #similearly :> this is for the values of that string making the width finite from left.
-        print("-"*43)
-        print("{:<26}{:>10}".format("your monthly expenses",total_spending))
-        print("{:<26}{:>10}".format("balance",balance))
-        print("*********************end*********************")
-    body()
+    def budget_body():
+        # Asking the user about their income first
+        print("\n========== BUDGET TRACKING SYSTEM ==========")
 
-if __name__== ("__main__"):
+        while True:
+            try:
+                monthly_income = int(input("Enter your monthly income (₹): "))
+                break
+            except ValueError:
+                print("Please enter a valid amount!")
+
+        # Collecting all the spending details
+        recorded_spendings = get_spendings()
+
+        # Calculating the total money spent
+        total_used = sum(amount for place, amount in recorded_spendings)
+        remaining = monthly_income - total_used
+
+        # Printing the final report
+        print("\n*************** BUDGET REPORT ***************")
+        print(f"Monthly Income: ₹{monthly_income}\n")
+
+        print("Spending Category", " " * 10, "Amount")
+        print("-" * 45)
+
+        # Displaying each spending nicely
+        for place, amount in recorded_spendings:
+            print("{:<26}{:>10}".format(place, amount))
+
+        print("-" * 45)
+        print("{:<26}{:>10}".format("Total Expenses", total_used))
+        print("{:<26}{:>10}".format("Remaining Balance", remaining))
+        print("*********************** END ***********************\n")
+
+    # running the main body of the program
+    budget_body()
+
+
+if __name__ == "__main__":
     __main__()
+
+
